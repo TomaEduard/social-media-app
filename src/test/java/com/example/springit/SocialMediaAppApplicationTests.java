@@ -1,4 +1,4 @@
-package com.example.socialmediaapp;
+package com.example.springit;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,5 +1,9 @@
 package com.example.springit;
 
+import com.example.springit.domain.Comment;
+import com.example.springit.domain.Link;
+import com.example.springit.repository.CommentRepository;
+import com.example.springit.repository.LinkRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,15 +23,23 @@ public class SpringitApplication {
     }
 
     @Bean
-    CommandLineRunner runner() {
+    CommandLineRunner runner(LinkRepository linkRepository, CommentRepository commentRepository) {
         return args -> {
-            log.error("CommandLineRunner.run();");
-            log.warn("CommandLineRunner.run();");
-            log.info("CommandLineRunner.run();");
-            log.debug("CommandLineRunner.run();");
-            log.trace("CommandLineRunner.run();");
+
+            Link link = new Link("Getting Started with Spring Boot 2","Test");
+            linkRepository.save(link);
+
+            Comment comment = new Comment("This Spring Boot 2 link is awesome!", link);
+            commentRepository.save(comment);
+            link.addCommment(comment);
+
+            System.out.println("We just inserted a link and a comment");
+            System.out.println("===========================================");
+
+
         };
     }
+
 }
 
 

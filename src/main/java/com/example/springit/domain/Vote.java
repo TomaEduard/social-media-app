@@ -1,6 +1,7 @@
 package com.example.springit.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 @Entity
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper=true)
 public class Vote extends Auditable {
 
     @Id
@@ -21,5 +23,6 @@ public class Vote extends Auditable {
     @ManyToOne
     private Link link;
     // user
+
 
 }

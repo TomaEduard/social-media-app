@@ -11,6 +11,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
+@RequiredArgsConstructor
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class User implements UserDetails {
 
     @Id
@@ -26,18 +31,9 @@ public class User implements UserDetails {
     @Column(length = 100)
     private String password;
 
-//    @NonNull
+    @NonNull
     @Column(nullable = false)
     private boolean enable;
-
-    public User(@NonNull @Size(min = 0, max = 20) String email, @NonNull String password, @NonNull boolean enable) {
-        this.email = email;
-        this.password = password;
-        this.enable = enable;
-    }
-
-    public User() {
-    }
 
     // relation
     @ManyToMany(fetch = FetchType.EAGER)
@@ -101,50 +97,5 @@ public class User implements UserDetails {
         return false;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isEnable() {
-        return enable;
-    }
-
-    public void setEnable(boolean enable) {
-        this.enable = enable;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='**************" + '\'' +
-                ", enable=" + enable +
-                ", roles=" + roles +
-                '}';
-    }
 }

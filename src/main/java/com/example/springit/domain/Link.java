@@ -19,11 +19,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
-@ToString
-//@NoArgsConstructor
+@NoArgsConstructor
 public class Link extends Auditable{
 
     @Id
@@ -48,15 +47,6 @@ public class Link extends Auditable{
 
     @OneToMany(mappedBy = "link")
     private List<Comment> comments = new ArrayList<>();
-
-//    Constructors cuz Project Lombok not working...
-    public Link(String title, String url) {
-        this.title = title;
-        this.url = url;
-    }
-
-    public Link() {
-    }
 
     public void addCommment(Comment comment) {
         comments.add(comment);
